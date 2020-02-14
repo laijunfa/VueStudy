@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+</head>
+<body>
+    <div id="box">
+        <div> 计数器:{{count}}</div>
+        <!-- 第一种方式 -->
+        <!-- <button @click='count++'>+</button> -->
+        <!-- <button @click='count--'>-</button> -->
+        
+        <!-- 第二种方式 -->
+        <button v-on:click='add'>+</button>
+        <button @click='sub'>-</button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:'#box',
+            data:{
+                count:0
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                },
+                sub:function(){
+                    this.count--;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

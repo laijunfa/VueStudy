@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" >
+        <ul>
+            <li v-for="item in user">{{item}}</li>
+            <!-- (值,键,下标) -->
+            <li v-for="(value,key,index) in user">{{value}} {{key}} {{index}}</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+               user:{name:'laijunfa',age:20,gender:'男'}
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <img v-bind:src="imgUrl" alt="">
+        <a :href="aHref">百度一下</a>
+    </div>
+    
+    <script src="../js/vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:'#box',
+            data:{
+                imgUrl:'https://pic.baike.soso.com/ugc/baikepic2/16036/20170823200140-4283612_jpg_300_429_27873.jpg/0',
+                aHref:'http://www.baidu.com'
+            }
+        });
+    </script>
+</body>
+</html>

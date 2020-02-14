@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* [v-cloak]{
+            display: none;
+        } */
+    </style>
+</head>
+<body>
+    <div class="box">
+       <div>
+       <label for="man">男</label>
+       <input type="radio" value="男" v-model='sex' id="man" name="sex">
+       <label for="woman">女</label>
+       <input type="radio" value="女" v-model='sex' id="woman" name="sex">
+       </div>
+       <div>您的选择是:{{sex}}</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        let vm=new Vue({
+            el:'.box',
+            data:{
+                sex:''
+            }
+        });
+
+    </script>
+</body>
+</html>

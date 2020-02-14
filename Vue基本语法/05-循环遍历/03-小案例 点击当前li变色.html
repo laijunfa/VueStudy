@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" >
+        <ul>
+            <!-- 如果点击li的下标等于当前下标,那么添加class -->
+            <li @click="chageColor(index)" :class="{active:currentIndex==index}" v-for="(value,index) in hobby">{{value}}</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+               hobby:['打篮球','玩游戏','睡觉','听歌'],
+               currentIndex:-1
+            },
+            methods:{
+                chageColor(index){
+                    //改变当前下标
+                    this.currentIndex=index
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
