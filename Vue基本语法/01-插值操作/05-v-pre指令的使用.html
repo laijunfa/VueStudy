@@ -7,19 +7,16 @@
   <title>v-pre指令的使用</title>
 </head>
 <body>
+  <!-- 跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。 -->
   <div id="app">
-    <h2>不使用v-pre</h2>
-    <h2>{{message}}</h2>
-    <h2>使用v-pre,不会解析</h2>
-    <h2 v-pre>{{message}}</h2>
-
+	 <h2 v-pre>{{Kyrie lrving}}</h2>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
   <script>
     const app = new Vue({
       el:"#app",
       data:{
-        message:"你好啊"
+        message:"Kyrie lrving"
       }
     })
   </script>

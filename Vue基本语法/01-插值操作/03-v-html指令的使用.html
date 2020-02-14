@@ -8,9 +8,7 @@
 </head>
 <body>
   <div id="app">
-    <h2>不使用v-html</h2>
-    <h2>{{url}}</h2>
-    <h2>使用v-html，直接插入html</h2>
+    <h2>使用v-html，可以解析标签</h2>
     <h2 v-html="url"></h2>
 
   </div>
@@ -19,7 +17,6 @@
     const app = new Vue({
       el:"#app",
       data:{
-        message:"你好啊",
         url:"<a href='http://www.baidu.com'>百度一下</a>"
       }
     })
