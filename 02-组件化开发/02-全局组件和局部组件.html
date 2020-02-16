@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化</title>
+</head>
+
+
+
+<body>
+    <div id="app">
+        <!-- 使用全局组件 -->
+        <my-cpn></my-cpn>
+        <!-- 使用局部组件 -->
+        <cpn></cpn>
+    </div>
+
+    <div id="app2">
+        <!-- 使用全局组件 -->
+        <my-cpn></my-cpn>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        //1.创建组件构造器
+        const cpn = Vue.extend({
+            template: `<div>
+                <p>hello world</p>
+                <p>你好 世界</p>
+                </div>`
+        })
+        //2.注册全局组件 这意味着该组件可以在任意Vue示例下使用。
+        Vue.component("my-cpn", cpn);
+        
+        //Vue实例一
+        const app = new Vue({
+            el: "#app",
+            data: {},
+            // 注册局部组件 
+            components:{
+                'cpn':cpn
+            }
+        })
+        // Vue实例二
+        const app2 = new Vue({
+            el: "#app2",
+            data: {},
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化</title>
+</head>
+
+
+
+<body>
+    <div id="app">
+        <cpn1></cpn1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+         //创建组件构造器二
+         const cpn2=Vue.extend({
+            template: `<div>
+                <p>你好 世界</p>
+                </div>`
+        })
+        //创建组件构造器一
+        const cpn1 = Vue.extend({
+            template: `<div>
+                <p>hello world</p>
+                </div>`,
+            // 在组件1里注册组件2(组件1为父组件,组件2子组件)
+            components:{
+                'cpn2':cpn2
+            }
+        })
+       
+        
+        //Vue实例
+        const app = new Vue({
+            el: "#app",
+            data: {},
+            // 注册局部组件 
+            components:{
+                'cpn1':cpn1
+            }
+        })
+    </script>
+</body>
+
+</html>

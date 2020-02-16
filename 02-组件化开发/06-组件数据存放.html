@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化</title>
+</head>
+<body>
+
+    <div id="app">
+        <cpn1></cpn1>
+    </div>
+    <!-- 为什么data在组件中必须是一个函数呢?
+        一:首先，如果不是一个函数，Vue直接就会报错。
+        二:其次，原因是在于Vue让每个组件对象都返回一个新的对象，
+        因为如果是同一个对象的，组件之间的数据会相互影响。
+     -->
+    <script type="text/x-template" id="cpn">
+        <div><p>姓名{{name}}</p></div>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        //Vue实例
+        const app = new Vue({
+            el: "#app",
+            data: {age:20},
+            components:{
+                 // 注册模板
+                'cpn1':{
+                    template:'#cpn',
+                    data(){
+                        return{
+                            name:'张三'
+                        }
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

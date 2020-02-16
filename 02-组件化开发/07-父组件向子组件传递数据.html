@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化</title>
+</head>
+<body>
+
+    <div id="app">
+        <child-cpn :child_hobby="hobby"></child-cpn>
+    </div>
+
+    <script type="text/x-template" id="child-cpn">
+        <div><p>爱好 {{child_hobby}}</p></div>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        //Vue实例
+        const app = new Vue({
+            el: "#app",
+            data: {hobby:['吃饭','睡觉','敲代码','玩游戏']},
+            components:{
+                 // 注册模板
+                'child-cpn':{
+                    template:'#child-cpn',
+                    data(){
+                        return{
+                            
+                        }
+                    },
+                    // 1.数组方式
+                    // props:['child_hobby']
+                    // 2.对象方式
+                    props:{
+                        child_hobby:Array
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
