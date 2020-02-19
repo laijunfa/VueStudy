@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化</title>
+</head>
+<body>
+
+    <div id="app">
+        <child-cpn ref='abc'></child-cpn>
+        <button @click="visit">点击</button>
+    </div>
+
+    <script type="text/x-template" id="child-cpn">
+        <div><p>姓名 {{name}}</p></div>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        //Vue实例
+        const app = new Vue({
+            el: "#app",
+            data: {},
+            methods:{
+                visit(){
+                    //父访问子组件的属性
+                    console.log(this.$refs.abc.name);
+                }
+            },
+            components:{
+                 // 注册模板
+                'child-cpn':{
+                    template:'#child-cpn',
+                    data(){
+                        return{
+                            name:'张三'
+                        }
+                    }
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

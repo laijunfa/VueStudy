@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-pre指令的使用</title>
+</head>
+<body>
+  <!-- 跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。 -->
+  <div id="app">
+	 <h2 v-pre>{{Kyrie lrving}}</h2>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"Kyrie lrving"
+      }
+    })
+  </script>
+</body>
+</html>
