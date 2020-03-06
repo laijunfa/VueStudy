@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .father{
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+    }
+    .son{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+</style>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- 1.阻止默认事件 @事件.prevent -->
+        <a href="http://www.baidu.com" @click.prevent="baidu">百度一下</a>
+        <!-- 2.阻止冒泡 @事件.stop-->
+        <div class="father" @click="fatherClick"> 
+            <!-- 子div点击后会触发父元素的点击事件,简称冒泡 使用事件修饰符@事件.stop阻止冒泡 -->
+            <div class="son" @click.stop=sonClick>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+            },
+            methods:{
+                baidu(){
+                    console.log('阻止跳转到百度');
+                },
+                fatherClick(){
+                    alert('父亲点击了');
+                },
+                sonClick(){
+                    alert('儿子点击了')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

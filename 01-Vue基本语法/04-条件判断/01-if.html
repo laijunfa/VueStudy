@@ -8,21 +8,23 @@
 </head>
 
 <body>
-    <div id="app" >
-        <div v-if="score>=100">大于等于100</div>
-        <div v-else-if="score>90">大于90</div>
-        <div v-else>小于90</div>
+    <div id='app'>
+        考试分数<input type="text" v-model="score">
+        <div>
+            <p v-if="score>=100">
+                奖励整只鸡
+            </p>
+            <p v-else-if="score>80">奖励鸡腿</p>
+            <p v-else>奖励藤条</p>
+        </div>
     </div>
-
-    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
     <script>
-        const app = new Vue({
+        new Vue({
             el: '#app',
             data: {
-                score:80
+                score:100
             }
-           
-
         })
     </script>
 </body>

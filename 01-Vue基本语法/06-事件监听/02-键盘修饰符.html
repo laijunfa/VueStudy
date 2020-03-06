@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- 键盘事件 绑定回车按键,回车键后触发事件 -->
+        <input type="text" @keyup.enter="search" v-model="searchValue">
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                searchValue:''
+            },
+            methods:{
+                search(){
+                    console.log(this.searchValue);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

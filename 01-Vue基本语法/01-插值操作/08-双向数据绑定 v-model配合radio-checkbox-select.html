@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<body>
+    <div id="app">
+        <!-- 文本数据绑定 input表单获取v-model的值,v-model绑定的变量是msg -->
+        <input type="text" v-model="msg" />
+        <div>{{msg}}</div>
+        <!-- v-model配合radio使用-->
+        <div>
+            <label>
+                广州:<input type="radio" value="广州" name="cidy" v-model="choose" />
+            </label>
+            <label>
+                深圳:<input type="radio" value="深圳" name="cidy" v-model="choose" />
+            </label>
+            <label>
+                珠海:<input type="radio" value="珠海" name="cidy" v-model="choose" />
+            </label>
+            <div>你选择的城市是:{{choose}}</div>
+        </div>
+        <!-- v-model配合select下拉框使用 -->
+        <div>
+            <select v-model="selectFruits">
+                <option>苹果</option>
+                <option>桃子</option>
+                <option>葡萄</option>
+                <option>橘子</option>
+            </select>
+            <div><input type="text" v-model="selectFruits"></div>
+            <div>你选择的水果是:{{selectFruits}}</div>
+        </div>
+        <!-- v-model配合checkbox多选框的使用 -->
+        <div>
+            <label>
+                吃饭<input type="checkbox" name="hobby" value="吃饭" v-model="checkhobby">
+            </label>
+            <label>
+                睡觉<input type="checkbox" name="hobby"  value="睡觉" v-model="checkhobby">
+            </label>
+            <label>
+                玩游戏<input type="checkbox" name="hobby" value="玩游戏" v-model="checkhobby">
+            </label>
+            <div>你的选择是:{{checkhobby}}</div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello vue',
+                choose: '深圳',
+                selectFruits: '苹果',
+                checkhobby:['睡觉']
+            }
+        })
+    </script>
+</body>
+
+</html>

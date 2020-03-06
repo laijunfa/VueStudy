@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+    <div id="app">
+        <!-- v-on事件监听 -->
+        <!-- <button v-on:click="num++">点击加1</button>
+        <button v-on:click="num--">点击减1</button>
+        <div>{{num}}</div> -->
+
+        <!-- v-on语法糖@ -->
+        <button @click="add">单击加1</button>
+        <!-- <button @dblclick="sub">双击减1</button> -->
+        <button @click="sub">单击减1</button>
+        <div>{{num}}</div>
+        <input type="text" v-model="num" disabled>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num:0
+            },
+            methods:{
+                add(){
+                    // 上限为10
+                    if(this.num<10){
+                        this.num++;
+                    }
+                },
+                sub(){
+                    //下线0
+                    if(this.num>0){
+                        this.num--
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

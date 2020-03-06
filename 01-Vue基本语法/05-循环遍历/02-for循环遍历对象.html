@@ -10,9 +10,8 @@
 <body>
     <div id="app" >
         <ul>
-            <li v-for="item in user">{{item}}</li>
-            <!-- (值,键,下标) -->
-            <li v-for="(value,key,index) in user">{{value}} {{key}} {{index}}</li>
+             <!-- v-for=(对象的值,对象的键,下标从0开始) -->
+             <li v-for="(value,key,index) in user">{{value}}--{{key}}--{{index}}</li>
         </ul>
     </div>
 
