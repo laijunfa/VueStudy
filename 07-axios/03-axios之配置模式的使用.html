@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-model="username">
+        <button @click="btnClick">post请求注册用户名</button>
+        <button @click="btnClick2">get请求获取笑话</button>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src="./js/axios.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                username:''
+            },
+            methods: {
+                //post请求
+                btnClick(){
+                    axios({
+                        method:'post',
+                        url:'https://autumnfish.cn/api/user/reg',
+                        data:{
+                            username:this.username
+                        }
+                    }).then(result=>{
+                        //成功
+                        console.log(result);
+                    }).catch(error=>{
+                        // 失败
+                        console.log(error);
+                    })
+                },
+                //get请求
+                btnClick2(){
+                    axios({
+                        method:'get',//method默认为get,可以省略
+                        url:'https://autumnfish.cn/api/joke/list',
+                        params:{
+                            num:20
+                        }
+                    }).then(result=>{
+                        //成功
+                        console.log(result);
+                    }).catch(error=>{
+                        // 失败
+                        console.log(error);
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

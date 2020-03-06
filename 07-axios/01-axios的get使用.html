@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <button @click="btnClick">获取10条笑话</button>
+        <div v-for="(item, index) in list" :key="index">{{index+1+item}}</div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src="./js/axios.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list:[]
+            },
+            methods: {
+                btnClick(){
+                    axios.get(' https://autumnfish.cn/api/joke/list',{params:{num:10}
+                    }).then((result)=>{
+                        //成功
+                        console.log(result);
+                        this.list=result.data.jokes;
+                    }).catch((error)=>{
+                        //失败
+                        console.log(error);
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

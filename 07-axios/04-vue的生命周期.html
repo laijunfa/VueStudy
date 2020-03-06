@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                username: 'laijunfa'
+            },
+            beforeCreate() {
+                console.log("beforeCreate创建前：");
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            created() {
+                console.log("created创建完成：");
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            beforeMount() {
+                console.log("beforeMount挂载前：");
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            mounted() {
+                console.log("mounted挂载完成：");
+                console.log(this.$el);
+                console.log(this.$data);
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate即将更新渲染');
+                let name = this.$refs.app.innerHTML;
+                console.log('name:' + name);
+            },
+            updated() {
+                console.log('updated更新成功');
+                let name = this.$refs.app.innerHTML;
+                console.log('name:' + name);
+            }
+        })
+    </script>
+</body>
+
+</html>
