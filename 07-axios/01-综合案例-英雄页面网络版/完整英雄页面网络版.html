@@ -160,38 +160,39 @@
         font-size: 14px;
     }
 </style>
-
+<!-- 需求
+    1.展示英雄名称列表
+    2.根据id展示英雄详情
+    3.实现搜索英雄 并绑定回车键
+-->
 <body>
-    <!-- 需求
-        1.显示英雄名称列表
-        2.点击英雄列表显示英雄信息
-        3.点击或回车搜索框查询英雄信息
-    -->
     <div id="app">
         <div class="nav">
             <span>英雄列表</span>
             <button class="btn" @click="search">搜 索</button>
-            <input class="search" v-model="inputValue" type="text" @keyup.enter="search" placeholder="请输入英雄名称进行搜索">
+            <input class="search" @keyup.enter="search" v-model="inputValue" type="text" placeholder="请输入英雄名称进行搜索">
         </div>
+        <!-- 不等于-1说明查询到数据了 -->
         <div class="content" v-if="curIndex!=-1">
             <!-- 人物列表 -->
             <ul class="list">
                 <li class="item active">人物名称</li>
-                <!-- 列表处理 只显示列表名字中包含input框文本的项 -->
-                <li class="item" @click="liClick(index,item.id)" :class="{active:curIndex==index}" v-for="(item, index) in heroList" v-if="item.name.includes(searchValue)" :key="index">{{item.name}}</li>
+                <!-- 展示英雄名称列表 -->
+                <!-- 1.@click="curIndex=index" 点击英雄列表的时,将当前点击项的下标赋给当前英雄下标 -->
+                <!-- 2.active:curIndex==index 当前英雄下标==当前点击项的下标则添加active类 -->
+                <!-- 3.v-if="item.name.includes(searchValue)" 只显示列表名字中包含input框文本的项 -->
+                <li class="item"  @click="liClick(index)" :class="{active:curIndex==index}"  v-for="(item, index) in heroList" v-if="item.name.includes(searchValue)" :key="index">{{item.name}}</li>
+
             </ul>
             <!-- 人物详情 -->
             <div class="info">
                 <div class="name">英雄姓名:{{heroInfo.name}}</div>
                 <div class='img'>
-                    <!-- <span class="imgChangeBtn btnLeft" @click="leftBtnEvent"></span> -->
                     <img :src="heroInfo.img" alt="">
-                    <!-- <span class="imgChangeBtn btnRight" @click="rightBtnEvent"></span> -->
                 </div>
                 <div class="tags">
                     <h5>英雄特征：</h5>
                     <span v-for="(item, index) in heroInfo.roles" :key="index">{{item}}</span>
-                    <span>法师</span>
                 </div>
                 <div class="story" v-html="heroInfo.story">英雄故事</div>
             </div>
@@ -204,71 +205,68 @@
         new Vue({
             el: "#app",
             data: {
-                curIndex:0,//当前下标
-                heroList:[],//所有英雄集合
-                heroInfo:{},//英雄详情
-                inputValue:"",
-                searchValue:""
+                heroList:[],//英雄集合
+                curIndex:0,//当前英雄下标
+                heroInfo:{},//当前英雄详情
+                inputValue:'',//搜索框的值
+                searchValue:''
             },
             methods: {
-                liClick(index){
-                    //点击项下标赋值给当前存储的下标
-                    this.curIndex=index;
-                    this.getHeroInfo();
-                },
+                // 搜索
                 search(){
+                    //每次搜索将文本框的存起来
                     this.searchValue=this.inputValue;
-                    //找到了返回下标,找不到返回-1
+                    //遍历英雄集合是否存在查询的英雄
                     let index=this.heroList.findIndex((item,index)=>{
-                        // console.log(item.name);
                         return item.name.includes(this.inputValue);
                     })
                     this.curIndex=index;
-                    //找到才获取英雄个人信息
+                   //查询到后获取英雄详情
                     if(index!=-1){
                         this.getHeroInfo();
                     }
-                    
-                   
                 },
-                //根据id获取英雄详情
+                liClick(index){
+                    this.curIndex=index;
+                    //获取英雄详情
+                    this.getHeroInfo();
+                },
+                //获取英雄详情
                 getHeroInfo(){
                     axios({
                         method:'get',
                         url:'https://autumnfish.cn/api/lol/info',
                         params:{
-                            // 当前下标的英雄id
                             id:this.heroList[this.curIndex].id
                         }
                     }).then(result=>{
-                        console.log('英雄详情',result);
                         this.heroInfo=result.data.data;
+                        console.log(result);
                     }).catch(error=>{
                         console.log(error);
                     })
                 }
             },
-            created() {
-                //axios请求数据
+            //实例已经创建完成之后被调用,然而，挂载阶段还没开始，$el 属性目前不可见。
+            created(){
+                //实例创建完后获取数据
                 axios({
                     method:'get',
                     url:'https://autumnfish.cn/api/lol/search',
+                    params:{
+
+                    }
                 }).then(result=>{
-                    console.log(result);
-                    //获取到数据后赋值给英雄数组
+                    //将数据赋给数组
                     this.heroList=result.data.data;
-                    // console.log('英雄id',result.data.data[0].id);
                     this.getHeroInfo();
+                    // console.log(result);
                 }).catch(error=>{
                     console.log(error);
                 })
-            },
+            }
 
         })
-
-
-
-
     </script>
 </body>
 
