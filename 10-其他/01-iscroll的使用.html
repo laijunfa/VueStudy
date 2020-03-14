@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .box {
+        width: 200px;
+        margin: 0 auto;
+        height: 200px;
+        border: 1px solid red;
+        overflow: hidden;
+        position: relative;
+    }
+</style>
+<!-- iscroll基本使用
+它是一个滚动条的优化
+1:导包
+2:布局
+     a:第一层是滚动条区域，也就是iscroll需要控制的区域   
+     b:第二层就是所有滚动的元素都在里面
+    css处理
+       a:去掉以前的滚动条   overflow:hidden;
+       b:在第一层加入相应定位( position: relative) ，让滚动条相对此标签定位。
+3：实例化
+   new IScroll(选择相应第一层dom，{
+       mouseWheel:true,   //鼠标滚轮控制
+       scrollbars:true   //显示滚动条
+   })
+-->
+<body>
+    <div id='app'>
+        <div class="box" ref="box">
+            <ul>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li>测试数据</li>
+                <li v-for="(item, index) in hobby" :key="index">{{item}}</li>
+            </ul>
+        </div>
+        <button @click="addData">添加数据</button>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src="./iscroll.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                hobby:['看电影','睡觉','玩游戏','敲代码']
+            },
+            methods: {
+                addData(){
+                    this.hobby.push('动态数据'+Math.floor(Math.random()*10));
+                    //刷新数据
+                    setTimeout(() => {
+                        this.iscroll.refresh();
+                    }, 0);
+                }
+            },
+            mounted() {
+                // 在mounted中实例化iscroll是因为iscroll是第一个最早可以访问vue的dom的生命周期
+                this.iscroll = new IScroll(document.querySelector('.box'), {
+                    mouseWheel: true,     //鼠标滚轮 控制
+                    scrollbars: true      //显示滚动条
+                })
+            },
+        })
+
+    </script>
+</body>
+
+</html>

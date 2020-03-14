@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        background-color: skyblue;
+    }
+    .box2 {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        background-color: red;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        /* 执行动画 */
+        transition: all .5s;
+        animation: move 2s;
+    }
+
+    /* 进入前的样式 */
+    .fade-enter {
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+
+    /* 离开时的样式 */
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+    @keyframes move {
+        0%{
+            width: 0px;
+        }
+        100%{
+            width: 200px;
+        }
+    }
+</style>
+
+<body>
+    <div id='app'>
+        <button @click="show=!show">点击</button>
+        <transition-group name="fade">
+            <div class="box" v-if="show" key='1'></div>
+            <div class="box2" v-if="show" key="2"></div>
+        </transition-group>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                show: true
+            }
+        })
+    </script>
+</body>
+
+</html>

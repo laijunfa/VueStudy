@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <button @click="changeData">点击改变数据</button>
+        <ul v-if="flag">
+            <li v-for="(item, index) in arr" :key="index">{{item}}</li>
+        </ul>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                arr:[1,2,3,4,5,6,7],
+                flag:true
+            },
+            methods: {
+                changeData(){
+                    this.arr[2]=Math.random()*999;
+                    this.flag=false;
+                    this.$nextTick(()=>{
+                        this.flag=true;
+                    })
+                    console.log(this.arr);
+                    
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
